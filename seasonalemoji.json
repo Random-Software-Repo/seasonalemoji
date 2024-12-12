@@ -1,0 +1,165 @@
+{
+	"comment":[
+	"run seasonalemoji -h for a partial explanation of this file."],
+	"selectors": [
+		{
+			"comment": ["Day Of Year between 1 and 366, inclusive, set default emoji."],
+			"conditions":[
+			{
+				"field":		"DOY",
+				"conditional":	">=",
+				"value":		1
+			},
+			{
+				"field":		"DOY",
+				"conditional":	"<=",
+				"value":		366
+			}
+			],
+			"emojis": ["✨"]
+		},
+		{
+			"comment":	["Fall/Autumn, september 14th (15th in a leap year) to December 14th/15th."],
+			"conditions":[
+			{
+				"field":		"DOY",
+				"conditional":	">=",
+				"value":		258
+			},
+			{
+				"field":		"DOY",
+				"conditional":	"<=",
+				"value":		349
+			}
+			],
+			"emojis": ["🍂","🌰","🍁"]
+		},
+		{
+			"comment":	["Valentine's Day, February 14th"],
+			"conditions":[
+			{
+				"field":		"MOY",
+				"conditional":	"=",
+				"value":		2
+			},
+			{
+				"field":		"DOM",
+				"conditional":	"=",
+				"value":		14
+			}
+			],
+			"emojis": ["💘","💌"]
+		},
+		{
+			"comment":	["Halloween, October 31st, but we'll include the 10 days before as well."],
+			"conditions":[
+			{
+				"field":		"MOY",
+				"conditional":	"=",
+				"value":		10
+			},
+			{
+				"field":		"DOM",
+				"conditional":	">=",
+				"value":		21
+			}
+			],
+			"emojis": ["🎃","👻","🦇"]
+		},
+		{
+			"comment":	[
+				"Christmas season, December 14th through 25th, but a later selector",
+				"for solstices will interrupt this for a day."],
+			"conditions":[
+			{
+				"field":		"MOY",
+				"conditional":	"=",
+				"value":		12
+			},
+			{
+				"field":		"DOM",
+				"conditional":	">=",
+				"value":		14
+			},
+			{
+				"field":		"DOM",
+				"conditional":	"<=",
+				"value":		25
+			}
+			],
+			"emojis": ["🎄","🎅","❄️","☃️"]
+		},
+		{
+			"comment":	[
+				"Solstices, special field will be 1 on the summer and winter solstices",
+				"Make sure Solsties occurs after Christmas as it may be in the middle of",
+				"the Chirstmas selector and the last selector matching will set the emoji."],
+			"conditions":[
+			{
+				"field":		"SOL",
+				"conditional":	"=",
+				"value":		1
+			}
+			],
+			"emojis": ["🔭","🌌"]
+		},
+		{
+			"comment":	["Equinoxes, special field will be 1 on the vernal or autumnal equinoxes"],
+			"conditions":[
+			{
+				"field":		"EQNX",
+				"conditional":	"=",
+				"value":		1
+			}
+			],
+			"emojis": ["🔭🌌"]
+		},
+		{
+			"comment": [
+				"Thanksgiving, US",
+				"# Thanksgiving is the 4th Thursday of November.",
+				"# November is month 11 of the year, and Thursday",
+				"# is day 5 of the week (starts with Sunday=1).",
+				"# The Earliest Thanksgiving can be occurs when November",
+				"# starts on a Thursday and Thanksgving is on the 22nd.",
+				"# The latest Thanksgiving can occur happens when November",
+				"# starts on a Friday and Thanksgving is on the 28th. So,",
+				"# if the DOW is Thursday, and the DOM is between 22 and",
+				"# 28 inclusive, it's Thanksgiving, otherwise it is not."],
+			"conditions":[
+			{
+				"field":		"MOY",
+				"conditional":	"=",
+				"value":		11
+			},
+			{
+				"field":		"DOW",
+				"conditional":	"=",
+				"value":		5
+			},
+			{
+				"field":		"DOM",
+				"conditional":	">=",
+				"value":		22
+			},
+			{
+				"field":		"DOM",
+				"conditional":	"<=",
+				"value":		28
+			}
+			],
+			"emojis": ["🦃"]
+		},
+		{ "comment": ["easter"],"conditions":[{"field":"ESTR","conditional":"=","value":1}],"emojis":["🧟","🥚","🧺","🐇"]},
+		{ "comment": ["us 4th of july"],"conditions":[{"field":"MOY","conditional":"=","value":7},{"field":"DOM","conditional":"=","value":4}],"emojis":["🇺🇸","🎆"]},
+		{ "comment": ["mexico independance"],"conditions":[{"field":"MOY","conditional":"=","value":9},{"field":"DOM","conditional":"=","value":16}],"emojis":["🇲🇽"]},
+		{ "comment": ["bastile day"],"conditions":[{"field":"MOY","conditional":"=","value":7},{"field":"DOM","conditional":"=","value":14}],"emojis":["🇫🇷"]},
+		{ "comment": ["australia day"],"conditions":[{"field":"MOY","conditional":"=","value":1},{"field":"DOM","conditional":"=","value":26}],"emojis":["🇦🇺"]},
+		{ "comment": ["canada day"],"conditions":[{"field":"MOY","conditional":"=","value":7},{"field":"DOM","conditional":"=","value":1}],"emojis":["🇨🇦"]},
+		{ "comment": ["chinese new year. variable, doesnt work"],"conditions":[{"field":"MOY","conditional":"=","value":2},{"field":"DOM","conditional":"=","value":-1}],"emojis":["🐲"]},
+		{ "comment": ["guy fawkes night"],"conditions":[{"field":"MOY","conditional":"=","value":11},{"field":"DOM","conditional":"=","value":5}],"emojis":["💣"]},
+		{ "comment": ["new years eve"],"conditions":[{"field":"MOY","conditional":"=","value":12},{"field":"DOM","conditional":"=","value":31}],"emojis":["🥳","🍾","🎉"]},
+		{ "comment": ["st patricks day"],"conditions":[{"field":"MOY","conditional":"=","value":3},{"field":"DOM","conditional":"=","value":17}],"emojis":["☘️"]},
+		{ "comment": ["festivus"],"conditions":[{"field":"MOY","conditional":"=","value":12},{"field":"DOM","conditional":"=","value":23}],"emojis":["💪","🙌","😤","💈"]}
+	]
+}
