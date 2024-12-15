@@ -69,7 +69,7 @@
 		{
 			"comment":	[
 				"Christmas season, December 14th through 25th, but a later selector",
-				"for solstices will interrupt this for a day."],
+				"for solstices will interrupt this for a day. ❄️ and ☃️ seen to break the promp"],
 			"conditions":[
 			{
 				"field":		"MOY",
@@ -87,7 +87,7 @@
 				"value":		25
 			}
 			],
-			"emojis": ["🎄","🎅","❄️","☃️"]
+			"emojis": ["🎄","🎅","⛄","❄","☃"]
 		},
 		{
 			"comment":	[
@@ -112,7 +112,7 @@
 				"value":		1
 			}
 			],
-			"emojis": ["🔭🌌"]
+			"emojis": ["🔭","🌌"]
 		},
 		{
 			"comment": [
@@ -150,7 +150,7 @@
 			],
 			"emojis": ["🦃"]
 		},
-		{ "comment": ["easter"],"conditions":[{"field":"ESTR","conditional":"=","value":1}],"emojis":["🧟","🥚","🧺","🐇"]},
+		{ "comment": ["easter"],"conditions":[{"field":"ESTR","conditional":"=","value":1}],"emojis":["🧟‍♂️","🥚","🧺","🐇"]},
 		{ "comment": ["us 4th of july"],"conditions":[{"field":"MOY","conditional":"=","value":7},{"field":"DOM","conditional":"=","value":4}],"emojis":["🇺🇸","🎆"]},
 		{ "comment": ["mexico independance"],"conditions":[{"field":"MOY","conditional":"=","value":9},{"field":"DOM","conditional":"=","value":16}],"emojis":["🇲🇽"]},
 		{ "comment": ["bastile day"],"conditions":[{"field":"MOY","conditional":"=","value":7},{"field":"DOM","conditional":"=","value":14}],"emojis":["🇫🇷"]},
