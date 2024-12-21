@@ -38,9 +38,9 @@ fn usage()
 	printwrap::print_wrap(5,0,"Usage:");
 	printwrap::print_wrap(5,0,"    seasonalemoji [options]");
 	printwrap::print_wrap(5,0,"Options:");
-	printwrap::print_wrap(5,21,"        -h           Print this usage message.");
-	printwrap::print_wrap(5,21,"        -d <date>    Use the date in <date> rather than the system date. <date> can be in the form of YYYY-MM-DD or YYYY.MM.DD");
-	printwrap::print_wrap(5,21,"        -c <file>    Read configuration from <file> rather than the default config file location.");
+	printwrap::print_wrap(5,19,"    -h             Print this usage message.");
+	printwrap::print_wrap(5,19,"    --date <date>  Use the date in <date> rather than the system date. <date> must be in the form of \"%Y-%m-%d-%H:%M\" (year-month-day-hour:minute)");
+	printwrap::print_wrap(5,19,"    -f <file>      Read configuration from <file> rather than the default config file location.");
 	printwrap::print_wrap(5,0,"");
 	printwrap::print_wrap(5,0,"The config file is a JSON file comprised primarly of an array of \"selectors\" each of which will \"select\" a specific date or date range and specify a list of emojis or other characters (any unicode characters will be valid).");
 	printwrap::print_wrap(5,0,"");
@@ -80,7 +80,7 @@ fn usage()
 	printwrap::print_wrap(5,20,"        {");
 	printwrap::print_wrap(5,20,"            \"field\": \"<field option here>\",");
 	printwrap::print_wrap(5,20,"            \"conditional\": \"<conditional option here>\",");
-	printwrap::print_wrap(5,20,"            \"value\": \"<number here>\"");
+	printwrap::print_wrap(5,20,"            \"value\": <number here>");
 	printwrap::print_wrap(5,20,"        }[,<additional conditions>]");
 	printwrap::print_wrap(5,20,"        \"emojis\": [\"<emoji>\"[, \"<additional emoji>\"]]");
 	printwrap::print_wrap(5,20,"    }[, <additional selectors>]");
