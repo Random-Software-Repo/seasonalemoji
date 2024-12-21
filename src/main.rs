@@ -88,7 +88,6 @@ fn usage()
 	printwrap::print_wrap(5,0,"");
 	printwrap::print_wrap(5,0,"Return codes:");
 	printwrap::print_wrap(5,8,"    1 - failed to read config file");
-	printwrap::print_wrap(5,8,"    2 - emojis field is not an array");
 	printwrap::print_wrap(5,8,"    3 - error parsing config file");
 	printwrap::print_wrap(5,8,"    0 - success");
 	printwrap::print_wrap(5,8,"    4 - failed to parse config file with no error");
@@ -128,8 +127,16 @@ fn load_config(file_path: &str) -> SeasonalemojiJSON
 	debug!("Json_file_path: \"{}\"", file_path);
 
 	let json_file_path = Path::new(file_path);
-	let file = File::open(json_file_path).expect("file not found");
-	let emojis=serde_json::from_reader(file).expect("error while reading");
+	let file = match File::open(json_file_path) 
+	{
+		Err(error) => {error!("Could not open file \"{}\"\n{}", file_path,error);process::exit(1)},
+		Ok(file) => file,
+	};
+	let emojis= match serde_json::from_reader(file)
+	{
+		Err(error) => {error!("Error reading file \"{}\"\n{}",file_path, error);process::exit(3)},
+		Ok(emojis) => emojis,
+	};
 	return emojis;
 }
 
