@@ -2,8 +2,7 @@ extern crate astronomicals;
 extern crate printwrap;
 use std::{env,fs::File,path::Path,process};
 use serde::{Deserialize, Serialize};
-//use chrono::{DateTime,Weekday,Local,Datelike,Timelike,Duration,NaiveDateTime,offset::TimeZone};
-use chrono::{Weekday,Local,Datelike,NaiveDateTime,offset::TimeZone};
+use chrono::{Weekday,Local,LocalResult,Datelike,NaiveDateTime,offset::TimeZone};
 use log::*;
 use astronomicals::*;
 use rand::Rng;
@@ -251,13 +250,26 @@ fn main()
 			}
 		}
 	}
-	stderrlog::new().module(module_path!()).verbosity(verbose).init().unwrap();
+	match stderrlog::new().module(module_path!()).verbosity(verbose).init()
+	{
+		Ok(l)=> l,
+		Err(e) =>{println!("Failed to create stderr logger:{}",e)},
+	}
 
 	if parse_fake_date
 	{
 		trace!("Parsing date \"{}\"", fakedate);
-		let fake_today = NaiveDateTime::parse_from_str(fakedate, "%Y-%m-%d-%H:%M").unwrap();
-		today = Local.from_local_datetime(&fake_today).unwrap();
+		let fake_today = match NaiveDateTime::parse_from_str(fakedate, "%Y-%m-%d-%H:%M")
+		{
+			Err(error) => {error!("Error parsing date supplied \"{}\"\n{}",fakedate,error);process::exit(5)},
+			Ok(fake_today) => fake_today,
+		};
+		today = match Local.from_local_datetime(&fake_today)
+			{
+				LocalResult::None => {error!("Failed to create fake date from {}",fake_today);process::exit(5)},
+				LocalResult::Single(date_time) => date_time,
+				LocalResult::Ambiguous(_date_time1, date_time2) => date_time2,
+			};
 		trace!("Parsed today (from fake date):{}", today);
 	}
 	else
