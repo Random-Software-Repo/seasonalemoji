@@ -40,6 +40,7 @@ fn usage()
 	printwrap::print_wrap(5,19,"    -h             Print this usage message.");
 	printwrap::print_wrap(5,19,"    --date <date>  Use the date in <date> rather than the system date. <date> must be in the form of \"%Y-%m-%d-%H:%M\" (year-month-day-hour:minute)");
 	printwrap::print_wrap(5,19,"    -f <file>      Read configuration from <file> rather than the default config file location.");
+	printwrap::print_wrap(5,19,"    --why          Prints the comment for the chosen selector after printing the emoji.");
 	printwrap::print_wrap(5,0,"");
 	printwrap::print_wrap(5,0,"The config file is a JSON file comprised primarly of an array of \"selectors\" each of which will \"select\" a specific date or date range and specify a list of emojis or other characters (any unicode characters will be valid).");
 	printwrap::print_wrap(5,0,"");
@@ -196,6 +197,7 @@ fn main()
 	let mut fakedate:&str = "";
 	let mut today=Local::now();
 	let mut parse_fake_date=false;
+	let mut why=false;
 	for i in start..end
 	{
 		if skip_argument
@@ -240,6 +242,10 @@ fn main()
 					{
 						verbose = log::Level::Trace;
 						debug=true;
+					}
+				"--why"=>
+					{
+						why=true;
 					}
 				_ =>
 					{
@@ -308,6 +314,7 @@ fn main()
 
 	let mut final_emoji = " ";
 	let mut rng = rand::thread_rng();
+	let mut comment = String::from("");
 	for e in &emojis.selectors 
 	{
 		let solstice:i32 = if ephemeris.solstice { 1} else { 0};
@@ -324,9 +331,19 @@ fn main()
 			let rn: u16 = rng.gen();
 			let index:usize = rn as usize % count;
 			final_emoji = e.emojis[index].as_str();
+			if why
+			{
+				comment=format!("{:?}",e.comment);
+			}
 		}
 	}
-	println!("{}", final_emoji);
-
+	if why
+	{
+		println!("{} {}", final_emoji,comment);
+	}
+	else
+	{
+		println!("{}", final_emoji);
+	}
 }
 
