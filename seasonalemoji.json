@@ -159,7 +159,7 @@
 		{ "comment": ["chinese new year. variable, doesnt work"],"conditions":[{"field":"MOY","conditional":"=","value":2},{"field":"DOM","conditional":"=","value":-1}],"emojis":["🐲"]},
 		{ "comment": ["guy fawkes night"],"conditions":[{"field":"MOY","conditional":"=","value":11},{"field":"DOM","conditional":"=","value":5}],"emojis":["💣"]},
 		{ "comment": ["new years eve"],"conditions":[{"field":"MOY","conditional":"=","value":12},{"field":"DOM","conditional":"=","value":31}],"emojis":["🥳","🍾","🎉"]},
-		{ "comment": ["st patricks day"],"conditions":[{"field":"MOY","conditional":"=","value":3},{"field":"DOM","conditional":"=","value":17}],"emojis":["☘️"]},
+		{ "comment": ["st patricks day"],"conditions":[{"field":"MOY","conditional":"=","value":3},{"field":"DOM","conditional":"=","value":17}],"emojis":["☘️ "]},
 		{ "comment": ["festivus"],"conditions":[{"field":"MOY","conditional":"=","value":12},{"field":"DOM","conditional":"=","value":23}],"emojis":["💪","🙌","😤","💈"]}
 	]
 }
